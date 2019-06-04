@@ -1,2 +1,2 @@
 # fast-pay-sdk
-Make payment development easier
+FastPaySDK is a software development kit written in Java for fast docking payments

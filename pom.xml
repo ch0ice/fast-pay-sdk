@@ -8,14 +8,30 @@
   <artifactId>fast-pay-sdk</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <packaging>jar</packaging>
   <name>fast-pay-sdk</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/ch0ice/fast-pay-sdk</url>
+  <description>FastPaySDK is a software development kit written in Java for fast docking payments</description>
+
+  <inceptionYear>2019</inceptionYear>
+
+  <scm>
+    <url>https://github.com/ch0ice/fast-pay-sdk</url>
+    <connection>scm:git:https://git@github.com/ch0ice/fast-pay-sdk.git</connection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>choice</id>
+      <name>choice</name>
+      <email>mr_liuzeyuan@163.com</email>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
