@@ -1,4 +1,4 @@
-package cn.com.onlinetool;
+package cn.com.onlinetool.fastpay;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 public class AppTest 
 {
     /**
-     * Rigorous Test :-)
+     * Rigorous WxPay11 :-)
      */
     @Test
     public void shouldAnswerWithTrue()

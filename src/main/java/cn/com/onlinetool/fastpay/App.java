@@ -1,4 +1,4 @@
-package cn.com.onlinetool;
+package cn.com.onlinetool.fastpay;
 
 /**
  * Hello world!
