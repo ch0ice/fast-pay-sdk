@@ -7,12 +7,8 @@ import cn.com.onlinetool.fastpay.pay.wxpay.response.*;
 import cn.com.onlinetool.fastpay.pay.wxpay.util.WXPayRequestUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.util.WXPayUtil;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
