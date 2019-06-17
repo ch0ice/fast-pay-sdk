@@ -1,5 +1,8 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
+import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +20,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayShortUrlRequest extends WXPayBaseRequest{
     /**
      * URL链接 必传
      * 需要转换的URL，签名用原串，传输需URLencode
      */
+    @NotEmpty
     private String longUrl;
 }
