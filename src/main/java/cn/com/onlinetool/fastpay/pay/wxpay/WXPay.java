@@ -110,7 +110,12 @@ public interface WXPay {
      */
     public WXPaySyncNotifyResponse syncNotify(String reqXml) throws Exception ;
 
+    /**
+     * test
+     * @param request
+     */
     public void sayHelloWorld(WXPayShortUrlRequest request);
+
 
     public static WXPay newInstance(final WXPayConfig config) throws Exception {
         WXPay wxPay = new WXPayImpl(config);

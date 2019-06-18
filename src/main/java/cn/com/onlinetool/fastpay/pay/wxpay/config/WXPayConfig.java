@@ -1,6 +1,5 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.config;
 
-import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.sdk.WXPayDomain;
 import cn.com.onlinetool.fastpay.pay.wxpay.sdk.WXPayDomainSimpleImpl;
 import lombok.AllArgsConstructor;
@@ -85,8 +84,6 @@ public class WXPayConfig {
     /**
      * 健康上报缓存消息的最大数量。会有线程去独立上报
      * 粗略计算：加入一条消息200B，10000消息占用空间 2000 KB，约为2MB，可以接受
-     *
-     * @return
      */
     private int reportQueueMaxSize = 10000;
 

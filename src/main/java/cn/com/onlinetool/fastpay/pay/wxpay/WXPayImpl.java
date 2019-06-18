@@ -1,7 +1,5 @@
 package cn.com.onlinetool.fastpay.pay.wxpay;
 
-import cn.com.onlinetool.fastpay.interceptor.InterceptorHandler;
-import cn.com.onlinetool.fastpay.interceptor.validation.ValidationInterceptor;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.request.*;
@@ -30,12 +28,6 @@ public class WXPayImpl implements WXPay {
         this.wxPayRequestUtil = new WXPayRequestUtil(config);
     }
 
-    public static WXPay newInstance(final WXPayConfig config) throws Exception {
-        WXPay wxPay = new WXPayImpl(config);
-        wxPay = InterceptorHandler.bind(wxPay, ValidationInterceptor.class);
-        return wxPay;
-    }
-
     /**
      * 检查微信支付配置必传参数是否为空
      * @throws Exception
@@ -56,7 +48,6 @@ public class WXPayImpl implements WXPay {
         if (this.config.getWxPayDomain() == null){
             throw new Exception("config.getWXPayDomain() is null");
         }
-
         if (this.config.getHttpConnectTimeoutMs() < 10) {
             throw new Exception("http connect timeout is too small");
         }
