@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayReportRequest extends WXPayBaseRequest {
     /**
      * 接口URL    必填
@@ -27,12 +30,14 @@ public class WXPayReportRequest extends WXPayBaseRequest {
      * 上报URL指定为： https://api.mch.weixin.qq.com/pay/micropay/total
      * 其它接口调用仍然按照调用一次，上报一次来进行。
      */
+    @NotEmpty
     private String interfaceUrl;
 
     /**
      * 接口耗时     必填
      * 接口耗时情况，单位为毫秒
      */
+    @NotEmpty
     private Integer executeTime;
 
     /**
@@ -40,6 +45,7 @@ public class WXPayReportRequest extends WXPayBaseRequest {
      * SUCCESS/FAIL
      * 此字段是通信标识，非交易标识，交易是否成功需要查看trade_state来判断
      */
+    @NotEmpty
     private String returnCode;
 
     /**
@@ -54,6 +60,7 @@ public class WXPayReportRequest extends WXPayBaseRequest {
      * 业务结果 必填
      * SUCCESS/FAIL
      */
+    @NotEmpty
     private String resultCode;
 
     /**
@@ -76,6 +83,7 @@ public class WXPayReportRequest extends WXPayBaseRequest {
      * 访问接口IP   必填
      * 发起接口调用时的机器IP
      */
+    @NotEmpty
     private String userIp;
 
     /**

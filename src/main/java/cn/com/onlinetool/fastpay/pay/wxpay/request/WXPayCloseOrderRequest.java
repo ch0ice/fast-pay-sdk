@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +21,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayCloseOrderRequest extends WXPayBaseRequest{
     /**
      * 商户订单号 必填
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
      */
+    @NotEmpty
     private String outTradeNo;
 }

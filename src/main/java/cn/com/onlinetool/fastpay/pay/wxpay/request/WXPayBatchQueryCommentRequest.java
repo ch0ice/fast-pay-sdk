@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,17 +22,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayBatchQueryCommentRequest extends WXPayBaseRequest {
     /**
      * 开始时间 必填
      * 按用户评论时间批量拉取的起始时间，格式为yyyyMMddHHmmss
      */
+    @NotEmpty
     private String beginTime;
 
     /**
      * 结束时间 必填
      * 按用户评论时间批量拉取的结束时间，格式为yyyyMMddHHmmss
      */
+    @NotEmpty
     private String endTime;
 
     /**
@@ -40,6 +45,7 @@ public class WXPayBatchQueryCommentRequest extends WXPayBaseRequest {
      * 商户需要翻页时，应该把本次调用返回的offset 作为下次调用的入参。
      * 注意offset是评论数据在微信支付后台保存的索引，未必是连续的
      */
+    @NotEmpty
     private Integer offset;
 
     /**

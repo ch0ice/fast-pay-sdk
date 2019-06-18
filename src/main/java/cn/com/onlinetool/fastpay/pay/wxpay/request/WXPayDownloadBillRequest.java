@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +24,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayDownloadBillRequest extends WXPayBaseRequest{
     /**
      * 对账单日期    必填
      * 下载对账单的日期，格式：20140603
      */
+    @NotEmpty
     private String billDate;
 
     /**

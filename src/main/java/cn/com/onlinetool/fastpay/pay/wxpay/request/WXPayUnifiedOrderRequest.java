@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import cn.com.onlinetool.fastpay.constants.CurrencyTypeConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,12 +20,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayUnifiedOrderRequest extends WXPayBaseRequest{
 
     /**
      * 商品描述 必填
      * 商品简单描述，该字段请按照规范传递
      */
+    @NotEmpty
     private String body;
 
     /**
@@ -42,6 +46,7 @@ public class WXPayUnifiedOrderRequest extends WXPayBaseRequest{
      * 商户订单号 必填
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*且在同一个商户号下唯一。
      */
+    @NotEmpty
     private String outTradeNo;
 
     /**
@@ -54,12 +59,14 @@ public class WXPayUnifiedOrderRequest extends WXPayBaseRequest{
      * 标价金额 必填
      * 订单总金额，单位为分
      */
+    @NotEmpty
     private Integer totalFee;
 
     /**
      * 终端IP 必填
      * 支持IPV4和IPV6两种格式的IP地址。调用微信支付API的机器IP
      */
+    @NotEmpty
     private String spbillCreateIp;
 
     /**
@@ -85,12 +92,14 @@ public class WXPayUnifiedOrderRequest extends WXPayBaseRequest{
      * 通知地址 必填
      * 异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
      */
+    @NotEmpty
     private String notifyUrl;
 
     /**
      * 交易类型 必填
      * JSAPI--JSAPI支付（或小程序支付）、NATIVE--Native支付、APP--app支付，MWEB--H5支付，不同trade_type决定了调起支付的方式
      */
+    @NotEmpty
     private String tradeType;
 
     /**

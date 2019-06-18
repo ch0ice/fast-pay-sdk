@@ -1,5 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayRefundRequest extends WXPayBaseRequest{
     /**
      * 微信订单号 微信订单号/商户订单号 二选一
@@ -42,18 +45,21 @@ public class WXPayRefundRequest extends WXPayBaseRequest{
      * 商户退款单号 必填
      * 商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一退款单号多次请求只退一笔。
      */
+    @NotEmpty
     private String outRefundNo;
 
     /**
      * 订单金额 必填
      * 订单总金额，单位为分，只能为整数
      */
+    @NotEmpty
     private Integer totalFee;
 
     /**
      * 退款金额 必填
      * 退款总金额，订单总金额，单位为分，只能为整数
      */
+    @NotEmpty
     private Integer refundFee;
 
     /**

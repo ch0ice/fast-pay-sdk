@@ -1,5 +1,6 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
+import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Validation
 public class WXPayRefundQueryRequest extends WXPayBaseRequest {
     /**
      * 微信订单号 微信订单号/商户订单号/商户退款单号/微信退款单号 四选一
