@@ -1,4 +1,4 @@
-package cn.com.onlinetool.fastpay.pay.wxpay.exception;
+package cn.com.onlinetool.fastpay.exception;
 
 import cn.com.onlinetool.fastpay.pay.wxpay.enums.FastPayExceptionEnum;
 

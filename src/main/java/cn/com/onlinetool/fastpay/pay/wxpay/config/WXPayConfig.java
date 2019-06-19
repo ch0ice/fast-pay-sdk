@@ -1,7 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.config;
 
-import cn.com.onlinetool.fastpay.pay.wxpay.sdk.WXPayDomain;
-import cn.com.onlinetool.fastpay.pay.wxpay.sdk.WXPayDomainSimpleImpl;
+import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomain;
+import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomainSimpleImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

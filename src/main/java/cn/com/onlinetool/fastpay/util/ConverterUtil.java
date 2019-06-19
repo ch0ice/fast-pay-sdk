@@ -24,7 +24,7 @@ import java.util.*;
  * @description: 转换工具类
  * @date 2019-06-06 15:32
  */
-public class ConverterUtil {
+public final class ConverterUtil {
 
 
     /**

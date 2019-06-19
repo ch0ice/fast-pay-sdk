@@ -1,7 +1,7 @@
 package cn.com.onlinetool.fastpay.pay.wxpay;
 
-import cn.com.onlinetool.fastpay.interceptor.InterceptorHandler;
-import cn.com.onlinetool.fastpay.interceptor.validation.ValidationInterceptor;
+import cn.com.onlinetool.fastpay.interceptor.customization.InterceptorHandler;
+import cn.com.onlinetool.fastpay.interceptor.customization.validation.ValidationInterceptor;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import cn.com.onlinetool.fastpay.pay.wxpay.request.*;
 import cn.com.onlinetool.fastpay.pay.wxpay.response.*;

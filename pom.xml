@@ -54,6 +54,8 @@
         <maven-gpg-plugin>1.6</maven-gpg-plugin>
         <maven-nexus-staging-plugin>1.6.8</maven-nexus-staging-plugin>
         <maven-release-plugin>2.5.3</maven-release-plugin>
+        <okhttp3>3.14.2</okhttp3>
+
     </properties>
 
     <dependencies>
@@ -74,7 +76,11 @@
             <artifactId>httpclient</artifactId>
             <version>${httpcomponents.httpclient}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp3}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

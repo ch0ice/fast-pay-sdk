@@ -1,4 +1,4 @@
-package cn.com.onlinetool.fastpay.interceptor;
+package cn.com.onlinetool.fastpay.interceptor.customization;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package cn.com.onlinetool.fastpay.pay.wxpay.sdk;
+package cn.com.onlinetool.fastpay.pay.wxpay.domain;
 
 
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
@@ -59,7 +59,7 @@ public class WXPayDomainSimpleImpl implements WXPayDomain {
         }
 
         long now = System.currentTimeMillis();
-        if(switchToAlternateDomainTime == 0){   //first switch
+        if(switchToAlternateDomainTime == 0){
             switchToAlternateDomainTime = now;
             return new DomainInfo(WXPayConstants.DOMAIN_API2, false);
         }else if(now - switchToAlternateDomainTime < MIN_SWITCH_PRIMARY_MSEC){
@@ -75,8 +75,9 @@ public class WXPayDomainSimpleImpl implements WXPayDomain {
             switchToAlternateDomainTime = 0;
             primaryDomain.resetCount();
             DomainStatics alternateDomain = domainData.get(WXPayConstants.DOMAIN_API2);
-            if(alternateDomain != null)
+            if(alternateDomain != null){
                 alternateDomain.resetCount();
+            }
             return new DomainInfo(WXPayConstants.DOMAIN_API, true);
         }
     }

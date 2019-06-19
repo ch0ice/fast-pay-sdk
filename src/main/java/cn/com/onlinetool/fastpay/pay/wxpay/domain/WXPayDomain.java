@@ -1,4 +1,4 @@
-package cn.com.onlinetool.fastpay.pay.wxpay.sdk;
+package cn.com.onlinetool.fastpay.pay.wxpay.domain;
 
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 

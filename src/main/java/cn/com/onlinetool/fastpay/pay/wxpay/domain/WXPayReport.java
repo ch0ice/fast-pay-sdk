@@ -1,4 +1,4 @@
-package cn.com.onlinetool.fastpay.pay.wxpay.sdk;
+package cn.com.onlinetool.fastpay.pay.wxpay.domain;
 
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
@@ -66,7 +66,7 @@ public class WXPayReport {
         public String toString() {
             return "ReportInfo{" +
                     "version='" + version + '\'' +
-                    ", sdk='" + sdk + '\'' +
+                    ", domain='" + sdk + '\'' +
                     ", uuid='" + uuid + '\'' +
                     ", timestamp=" + timestamp +
                     ", elapsedTimeMillis=" + elapsedTimeMillis +

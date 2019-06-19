@@ -1,9 +1,9 @@
-package cn.com.onlinetool.fastpay.interceptor.validation;
+package cn.com.onlinetool.fastpay.interceptor.customization.validation;
 
 import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
 import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import cn.com.onlinetool.fastpay.annotations.validation.ValidationException;
-import cn.com.onlinetool.fastpay.interceptor.Interceptor;
+import cn.com.onlinetool.fastpay.interceptor.customization.Interceptor;
 
 import java.lang.Object;
 import java.lang.reflect.Field;

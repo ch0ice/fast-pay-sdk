@@ -1,8 +1,6 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.util;
 import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
-import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
-import cn.com.onlinetool.fastpay.pay.wxpay.enums.FastPayExceptionEnum;
-import cn.com.onlinetool.fastpay.pay.wxpay.exception.FastPayException;
+import cn.com.onlinetool.fastpay.exception.FastPayException;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants.SignType;
@@ -194,7 +192,7 @@ public class WXPayUtil {
      * @return
      */
     public static Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger("wxpay java sdk");
+        Logger logger = LoggerFactory.getLogger("wxpay java domain");
         return logger;
     }
 
