@@ -33,6 +33,7 @@ public class WXPayRequestUtil {
             throw new Exception("WXPayConfig.getWXPayDomain().getDomain() is empty or null");
         }
         try {
+
             String url = domainInfo.domain + urlSuffix;
             String contentType = "application/xml; charset=utf-8";
             String result;
@@ -45,6 +46,7 @@ public class WXPayRequestUtil {
             }else {
                 result = OkHttpRequestUtil.syncPostRequest(url,data,contentType).body().string();
             }
+
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs()-startTimestampMs;
             config.getWxPayDomain().report(domainInfo.domain, elapsedTimeMillis, null);
             WXPayReport.getInstance(config).report(
