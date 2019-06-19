@@ -1,6 +1,5 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.util;
 import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
-import cn.com.onlinetool.fastpay.exception.FastPayException;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants.SignType;

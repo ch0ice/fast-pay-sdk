@@ -46,7 +46,7 @@ public class WXPayConfig {
     /**
      * 商户证书
      */
-    private InputStream certStream;
+    private InputStream cert;
 
 
 
@@ -64,6 +64,11 @@ public class WXPayConfig {
      * HTTP(S) 读数据超时时间，单位毫秒
      */
     private int httpReadTimeoutMs = 8*1000;
+
+    /**
+     * 重试次数
+     */
+    private int retryNum = 0;
 
 
     /**

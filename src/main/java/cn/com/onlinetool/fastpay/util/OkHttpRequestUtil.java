@@ -19,15 +19,16 @@ public final class OkHttpRequestUtil {
      * 异步请求
      * @param url 请求地址
      * @param requestBody 请求数据体
+     * @param contentType 内容类型
      * @param notify 实现 OkHttpAsyncNotify 接口，会通知执行结果
-     * @param maxRetryNum 重试次数
+     * @param retryNum 重试次数
      * @param cert        证书
      * @param keyType     密钥库类型
      * @param partnerId   证书密码
      * @throws Exception
      */
-    private static void asyncRequest(String url, String requestBody, OkHttpAsyncNotify notify,int maxRetryNum, InputStream cert, String keyType, String partnerId) throws Exception {
-        MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
+    private static void asyncRequest(String url, String requestBody, String contentType,OkHttpAsyncNotify notify,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+        MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
                 .url(url);
         if(null != requestBody){
@@ -36,12 +37,12 @@ public final class OkHttpRequestUtil {
 
         //根据条件获取不同的请求客户端 默认获取普通客户端
         OkHttpClient okHttpClient = OkHttpClientUtil.getOkHttpClient();
-        if(maxRetryNum > 1 && null != cert){
-            okHttpClient = OkHttpClientUtil.getOkHttpClient(maxRetryNum,cert,keyType,partnerId);
+        if(retryNum > 1 && null != cert){
+            okHttpClient = OkHttpClientUtil.getOkHttpClient(retryNum,cert,keyType,partnerId);
         }else if(null != cert){
             okHttpClient = OkHttpClientUtil.getOkHttpClient(cert,keyType,partnerId);
-        }else if(maxRetryNum > 1){
-            okHttpClient = OkHttpClientUtil.getOkHttpClient(maxRetryNum);
+        }else if(retryNum > 1){
+            okHttpClient = OkHttpClientUtil.getOkHttpClient(retryNum);
         }
 
         Call call = okHttpClient.newCall(request.build());
@@ -65,12 +66,12 @@ public final class OkHttpRequestUtil {
     }
 
 
-    public static void asyncGetRequest(String url, OkHttpAsyncNotify notify) throws Exception {
-        asyncRequest(url,null,notify,0,null,null,null);
+    public static void asyncGetRequest(String url, String contentType,OkHttpAsyncNotify notify) throws Exception {
+        asyncRequest(url,null,contentType,notify,0,null,null,null);
     }
 
-    public static void asyncPostRequest(String url, String requestBody, OkHttpAsyncNotify notify) throws Exception {
-        asyncRequest(url,requestBody,notify,0,null,null,null);
+    public static void asyncPostRequest(String url, String contentType,String requestBody, OkHttpAsyncNotify notify) throws Exception {
+        asyncRequest(url,requestBody,contentType,notify,0,null,null,null);
     }
 
 
@@ -83,18 +84,19 @@ public final class OkHttpRequestUtil {
 
 
     /**
-     构建同步请求
+     * 同步请求
      * @param url 请求地址
      * @param requestBody 请求数据体
-     * @param maxRetryNum 重试次数
+     * @param contentType 内容类型
+     * @param retryNum 重试次数
      * @param cert        证书
      * @param keyType     密钥库类型
      * @param partnerId   证书密码
      * @return
      * @throws Exception
      */
-    private static Response syncRequest(String url,String requestBody,int maxRetryNum, InputStream cert, String keyType, String partnerId) throws Exception {
-        MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
+    private static Response syncRequest(String url,String requestBody,String contentType,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+        MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
                 .url(url);
         if(null != requestBody){
@@ -102,12 +104,12 @@ public final class OkHttpRequestUtil {
         }
         //根据条件获取不同的请求客户端 默认获取普通客户端
         OkHttpClient okHttpClient = OkHttpClientUtil.getOkHttpClient();
-        if(maxRetryNum > 1 && null != cert){
-            okHttpClient = OkHttpClientUtil.getOkHttpClient(maxRetryNum,cert,keyType,partnerId);
+        if(retryNum > 1 && null != cert){
+            okHttpClient = OkHttpClientUtil.getOkHttpClient(retryNum,cert,keyType,partnerId);
         }else if(null != cert){
             okHttpClient = OkHttpClientUtil.getOkHttpClient(cert,keyType,partnerId);
-        }else if(maxRetryNum > 1){
-            okHttpClient = OkHttpClientUtil.getOkHttpClient(maxRetryNum);
+        }else if(retryNum > 1){
+            okHttpClient = OkHttpClientUtil.getOkHttpClient(retryNum);
         }
 
         Response res = null;
@@ -121,28 +123,28 @@ public final class OkHttpRequestUtil {
     }
 
 
-    public static Response syncGetRequest(String url) throws Exception {
-        return syncRequest(url,null,0,null,null,null);
+    public static Response syncGetRequest(String url,String contentType) throws Exception {
+        return syncRequest(url,null,contentType,0,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody) throws Exception {
-        return syncRequest(url,requestBody,0,null,null,null);
+    public static Response syncPostRequest(String url,String requestBody,String contentType) throws Exception {
+        return syncRequest(url,requestBody,contentType,0,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,int maxRetry) throws Exception {
-        return syncRequest(url,requestBody,maxRetry,null,null,null);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,int retryNum) throws Exception {
+        return syncRequest(url,requestBody,contentType,retryNum,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,InputStream cert, String keyType, String partnerId) throws Exception {
-        return syncRequest(url,requestBody,0,cert,keyType,partnerId);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,InputStream cert, String keyType, String partnerId) throws Exception {
+        return syncRequest(url,requestBody,contentType,0,cert,keyType,partnerId);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,int maxRetryNum, InputStream cert, String keyType, String partnerId) throws Exception {
-        return syncRequest(url,requestBody,maxRetryNum,cert,keyType,partnerId);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+        return syncRequest(url,requestBody,contentType,retryNum,cert,keyType,partnerId);
     }
 
 

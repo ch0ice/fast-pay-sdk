@@ -28,19 +28,19 @@ public final class OkHttpClientUtil {
     /**
      * 模版方法，不对外暴露
      * 获取带证书和重试功能的客户端
-     * @param maxRetryNum 重试次数 为0不重试
+     * @param retryNum 重试次数 为0不重试
      * @param cert        证书
      * @param keyType     密钥库类型
      * @param partnerId   证书密码
      * @return
      * @throws Exception
      */
-    private static OkHttpClient buildOkHttpClient(int maxRetryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+    private static OkHttpClient buildOkHttpClient(int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
 
 
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         builder.addInterceptor(new OkHttpClientLoggingInterceptor());
-        builder.addInterceptor(new OkHttpClientRetryIntercepter(maxRetryNum));
+        builder.addInterceptor(new OkHttpClientRetryIntercepter(retryNum));
         builder.retryOnConnectionFailure(true);
 //            builder.callTimeout(1, TimeUnit.SECONDS)
 //                    .connectTimeout(2,TimeUnit.SECONDS)
@@ -72,20 +72,20 @@ public final class OkHttpClientUtil {
 
     /**
      * 获取带证书和重试功能的客户端
-     * @param maxRetryNum 重试次数
+     * @param retryNum 重试次数
      * @param cert        证书
      * @param keyType     密钥库类型
      * @param partnerId   证书密码
      * @return
      * @throws Exception
      */
-    public static OkHttpClient getOkHttpClient(int maxRetryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+    public static OkHttpClient getOkHttpClient(int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
         String methodTag = "withCertAndRetry";
         OkHttpClient okHttpClient = OK_HTTP_CLIENT_MAP.get(methodTag);
         if (null != okHttpClient) {
             return okHttpClient;
         }
-        okHttpClient = buildOkHttpClient(maxRetryNum,cert,keyType,partnerId);
+        okHttpClient = buildOkHttpClient(retryNum,cert,keyType,partnerId);
         OK_HTTP_CLIENT_MAP.put(methodTag, okHttpClient);
         return okHttpClient;
     }
@@ -111,17 +111,17 @@ public final class OkHttpClientUtil {
 
     /**
      * 获取带重试功能的客户端
-     * @param maxRetryNum 重试次数
+     * @param retryNum 重试次数
      * @return
      * @throws Exception
      */
-    public static OkHttpClient getOkHttpClient(int maxRetryNum) throws Exception {
+    public static OkHttpClient getOkHttpClient(int retryNum) throws Exception {
         String methodTag = "withRetry";
         OkHttpClient okHttpClient = OK_HTTP_CLIENT_MAP.get(methodTag);
         if (null != okHttpClient) {
             return okHttpClient;
         }
-        okHttpClient = buildOkHttpClient(maxRetryNum,null,null,null);
+        okHttpClient = buildOkHttpClient(retryNum,null,null,null);
         OK_HTTP_CLIENT_MAP.put(methodTag, okHttpClient);
         return okHttpClient;
     }
