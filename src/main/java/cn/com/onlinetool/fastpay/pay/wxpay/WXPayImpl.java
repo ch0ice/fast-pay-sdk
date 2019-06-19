@@ -42,7 +42,7 @@ public class WXPayImpl implements WXPay {
         if (this.config.getMchId() == null || this.config.getMchId().trim().length() == 0) {
             throw new Exception("appid in config is empty");
         }
-        if (this.config.getCertStream() == null) {
+        if (this.config.getCert() == null) {
             throw new Exception("cert stream in config is empty");
         }
         if (this.config.getWxPayDomain() == null){

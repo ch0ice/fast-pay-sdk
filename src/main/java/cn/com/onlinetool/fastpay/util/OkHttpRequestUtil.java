@@ -27,12 +27,15 @@ public final class OkHttpRequestUtil {
      * @param partnerId   证书密码
      * @throws Exception
      */
-    private static void asyncRequest(String url, String requestBody, String contentType,OkHttpAsyncNotify notify,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+    private static void asyncRequest(String url, String requestBody, String contentType,String userAgent,OkHttpAsyncNotify notify,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
         MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
                 .url(url);
         if(null != requestBody){
             request.post(RequestBody.create(mediaType, requestBody));
+        }
+        if(null != userAgent){
+            request.addHeader("User-Agent",userAgent);
         }
 
         //根据条件获取不同的请求客户端 默认获取普通客户端
@@ -66,12 +69,12 @@ public final class OkHttpRequestUtil {
     }
 
 
-    public static void asyncGetRequest(String url, String contentType,OkHttpAsyncNotify notify) throws Exception {
-        asyncRequest(url,null,contentType,notify,0,null,null,null);
+    public static void asyncGetRequest(String url, String contentType,String userAgent,OkHttpAsyncNotify notify) throws Exception {
+        asyncRequest(url,null,contentType,userAgent,notify,0,null,null,null);
     }
 
-    public static void asyncPostRequest(String url, String contentType,String requestBody, OkHttpAsyncNotify notify) throws Exception {
-        asyncRequest(url,requestBody,contentType,notify,0,null,null,null);
+    public static void asyncPostRequest(String url, String contentType,String userAgent,String requestBody, OkHttpAsyncNotify notify) throws Exception {
+        asyncRequest(url,requestBody,contentType,userAgent,notify,0,null,null,null);
     }
 
 
@@ -95,7 +98,7 @@ public final class OkHttpRequestUtil {
      * @return
      * @throws Exception
      */
-    private static Response syncRequest(String url,String requestBody,String contentType,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+    private static Response syncRequest(String url,String requestBody,String contentType,String userAgent,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
         MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
                 .url(url);
@@ -123,28 +126,28 @@ public final class OkHttpRequestUtil {
     }
 
 
-    public static Response syncGetRequest(String url,String contentType) throws Exception {
-        return syncRequest(url,null,contentType,0,null,null,null);
+    public static Response syncGetRequest(String url,String contentType,String userAgent) throws Exception {
+        return syncRequest(url,null,contentType,userAgent,0,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,String contentType) throws Exception {
-        return syncRequest(url,requestBody,contentType,0,null,null,null);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,String userAgent) throws Exception {
+        return syncRequest(url,requestBody,contentType,userAgent,0,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,String contentType,int retryNum) throws Exception {
-        return syncRequest(url,requestBody,contentType,retryNum,null,null,null);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,String userAgent,int retryNum) throws Exception {
+        return syncRequest(url,requestBody,contentType,userAgent,retryNum,null,null,null);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,String contentType,InputStream cert, String keyType, String partnerId) throws Exception {
-        return syncRequest(url,requestBody,contentType,0,cert,keyType,partnerId);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,String userAgent,InputStream cert, String keyType, String partnerId) throws Exception {
+        return syncRequest(url,requestBody,contentType,userAgent,0,cert,keyType,partnerId);
     }
 
 
-    public static Response syncPostRequest(String url,String requestBody,String contentType,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
-        return syncRequest(url,requestBody,contentType,retryNum,cert,keyType,partnerId);
+    public static Response syncPostRequest(String url,String requestBody,String contentType,String userAgent,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
+        return syncRequest(url,requestBody,contentType,userAgent,retryNum,cert,keyType,partnerId);
     }
 
 

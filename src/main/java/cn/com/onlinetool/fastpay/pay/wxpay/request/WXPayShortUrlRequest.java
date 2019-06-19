@@ -2,7 +2,6 @@ package cn.com.onlinetool.fastpay.pay.wxpay.request;
 
 import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
 import cn.com.onlinetool.fastpay.annotations.validation.Validation;
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
