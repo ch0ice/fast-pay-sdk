@@ -1,8 +1,8 @@
 package cn.com.onlinetool.fastpay.util;
 
-import cn.com.onlinetool.fastpay.interceptor.okhttp.OkHttpClientLoggingInterceptor;
-import cn.com.onlinetool.fastpay.interceptor.okhttp.OkHttpClientRetryIntercepter;
+import cn.com.onlinetool.fastpay.interceptor.okhttp.OkHttpRetryInterceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.http.ssl.SSLContexts;
 import org.slf4j.Logger;
 
@@ -39,8 +39,8 @@ public final class OkHttpClientUtil {
 
 
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        builder.addInterceptor(new OkHttpClientLoggingInterceptor());
-        builder.addInterceptor(new OkHttpClientRetryIntercepter(retryNum));
+        builder.addInterceptor((new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)));
+        builder.addInterceptor(new OkHttpRetryInterceptor(retryNum));
         builder.retryOnConnectionFailure(true);
 //            builder.callTimeout(1, TimeUnit.SECONDS)
 //                    .connectTimeout(2,TimeUnit.SECONDS)

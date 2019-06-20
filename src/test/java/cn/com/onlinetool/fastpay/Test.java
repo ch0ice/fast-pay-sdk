@@ -10,6 +10,6 @@ import cn.com.onlinetool.fastpay.util.OkHttpRequestUtil;
 public class Test {
     public static void main(String[] args) throws Exception {
         String url = "http://wwww.baidu.com";
-        OkHttpRequestUtil.syncGetRequest(url);
+        OkHttpRequestUtil.syncGetRequest(url,"application/xml; charset=utf-8",null);
     }
 }

@@ -52,7 +52,6 @@ public final class OkHttpRequestUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LOGGER.error("onFailure:" + e.getMessage());
                 if(null != notify){
                     notify.onFailure(call,e);
                 }
@@ -60,7 +59,6 @@ public final class OkHttpRequestUtil {
 
             @Override
             public void onResponse(Call call, Response res) throws IOException {
-                LOGGER.info("onResponse: " + res.body().string());
                 if(null != notify){
                     notify.onSuccess(call,res);
                 }
@@ -118,9 +116,8 @@ public final class OkHttpRequestUtil {
         Response res = null;
         try {
             res = okHttpClient.newCall(request.build()).execute();
-            LOGGER.info("onResponse: " + res.body().string());
         } catch (IOException e) {
-            LOGGER.error("onFailure:" + e.getMessage());
+            e.printStackTrace();
         }
         return res;
     }

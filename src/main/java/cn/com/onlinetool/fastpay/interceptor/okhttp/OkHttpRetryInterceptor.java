@@ -14,16 +14,16 @@ import java.io.IOException;
  * @date 2019-06-19 16:02
  *
  */
-public class OkHttpClientRetryIntercepter implements Interceptor {
-    private static final Logger LOGGER = LoggerUtil.getLogger(OkHttpClientLoggingInterceptor.class);
+public class OkHttpRetryInterceptor implements Interceptor {
+    private static final Logger LOGGER = LoggerUtil.getLogger(OkHttpRetryInterceptor.class);
 
     private int maxRetryNum = 0;
     private int retryNum = 0;
-    public OkHttpClientRetryIntercepter(){
+    public OkHttpRetryInterceptor(){
         super();
     }
 
-    public OkHttpClientRetryIntercepter(int maxRetryNum){
+    public OkHttpRetryInterceptor(int maxRetryNum){
         this.maxRetryNum = maxRetryNum;
     }
 

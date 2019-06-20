@@ -7,7 +7,6 @@ import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomain;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayReport;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.util.OkHttpRequestUtil;
-import org.apache.http.conn.ConnectTimeoutException;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -67,22 +66,6 @@ public class WXPayRequestUtil {
             firstHasDnsErr = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
             WXPayUtil.getLogger().warn("UnknownHostException for domainInfo {}", domainInfo);
-            WXPayReport.getInstance(config).report(
-                    uuid,
-                    elapsedTimeMillis,
-                    domainInfo.domain,
-                    domainInfo.primaryDomain,
-                    connectTimeoutMs,
-                    readTimeoutMs,
-                    firstHasDnsErr,
-                    firstHasConnectTimeout,
-                    firstHasReadTimeout
-            );
-        } catch (ConnectTimeoutException ex) {
-            exception = ex;
-            firstHasConnectTimeout = true;
-            elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("connect timeout happened for domainInfo {}", domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,

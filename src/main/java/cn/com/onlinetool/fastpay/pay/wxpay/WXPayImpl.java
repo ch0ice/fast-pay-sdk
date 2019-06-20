@@ -23,7 +23,7 @@ public class WXPayImpl implements WXPay {
     private final WXPayRequestUtil wxPayRequestUtil;
 
     public WXPayImpl(final WXPayConfig config) throws Exception {
-//        this.checkWXPayConfig();
+        this.checkWXPayConfig();
         this.config = config;
         this.wxPayRequestUtil = new WXPayRequestUtil(config);
     }

@@ -1,10 +1,10 @@
 package cn.com.onlinetool.fastpay.pay.wxpay;
 
 import cn.com.onlinetool.fastpay.interceptor.customization.InterceptorHandler;
-import cn.com.onlinetool.fastpay.interceptor.customization.validation.ValidationInterceptor;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import cn.com.onlinetool.fastpay.pay.wxpay.request.*;
 import cn.com.onlinetool.fastpay.pay.wxpay.response.*;
+import cn.com.onlinetool.fastpay.interceptor.customization.validation.*;
 
 /**
  * @author choice
@@ -119,7 +119,7 @@ public interface WXPay {
 
     public static WXPay newInstance(final WXPayConfig config) throws Exception {
         WXPay wxPay = new WXPayImpl(config);
-        wxPay = InterceptorHandler.bind(wxPay, ValidationInterceptor.class);
+        wxPay = InterceptorHandler.bind(wxPay,ValidationInterceptor.class);
         return wxPay;
     }
 }
