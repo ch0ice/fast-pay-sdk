@@ -32,7 +32,7 @@ public final class ConverterUtil {
      * @param obj
      * @return
      */
-    private static List<Field> getFields(Object obj){
+    public static List<Field> getFields(Object obj){
         List<Field> fields = new LinkedList<>();
         Collections.addAll(fields,obj.getClass().getDeclaredFields());
         if(obj.getClass().getSuperclass().getDeclaredFields().length > 0){
@@ -67,13 +67,13 @@ public final class ConverterUtil {
      * @return
      * @throws Exception
      */
-    public static Map objectToMap(Object obj,CaseFormat from,CaseFormat to) throws Exception {
+    public static Map<String,String> objectToMap(Object obj,CaseFormat from,CaseFormat to) throws Exception {
 
         if (obj == null) {
             return null;
         }
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         List<Field> fields = getFields(obj);
         for (Field field : fields) {
             int mod = field.getModifiers();
@@ -83,9 +83,9 @@ public final class ConverterUtil {
             field.setAccessible(true);
             if(null != field.get(obj)){
                 if(null != from && null != to){
-                    map.put(from.to(to, field.getName()), field.get(obj));
+                    map.put(from.to(to, field.getName()), field.get(obj).toString());
                 }else {
-                    map.put(field.getName(), field.get(obj));
+                    map.put(field.getName(), field.get(obj).toString());
                 }
             }
 

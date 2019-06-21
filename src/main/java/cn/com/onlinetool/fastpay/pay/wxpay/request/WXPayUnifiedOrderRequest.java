@@ -3,6 +3,7 @@ package cn.com.onlinetool.fastpay.pay.wxpay.request;
 import cn.com.onlinetool.fastpay.annotations.validation.NotEmpty;
 import cn.com.onlinetool.fastpay.annotations.validation.Validation;
 import cn.com.onlinetool.fastpay.constants.CurrencyTypeConstants;
+import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayTypeConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -99,7 +100,6 @@ public class WXPayUnifiedOrderRequest extends WXPayBaseRequest{
      * 交易类型 必填
      * JSAPI--JSAPI支付（或小程序支付）、NATIVE--Native支付、APP--app支付，MWEB--H5支付，不同trade_type决定了调起支付的方式
      */
-    @NotEmpty
     private String tradeType;
 
     /**

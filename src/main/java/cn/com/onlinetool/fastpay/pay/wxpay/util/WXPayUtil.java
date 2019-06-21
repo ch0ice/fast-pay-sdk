@@ -2,7 +2,6 @@ package cn.com.onlinetool.fastpay.pay.wxpay.util;
 import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
-import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants.SignType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -27,18 +26,6 @@ public class WXPayUtil {
 
 
 
-
-    /**
-     * 生成带有 sign 的 XML 格式字符串
-     *
-     * @param data Map类型数据
-     * @param key API密钥
-     * @return 含有sign字段的XML
-     */
-    public static String generateSignedXml(final Map<String, String> data, String key) throws Exception {
-        return generateSignedXml(data, key, EncryptionTypeConstants.MD5);
-    }
-
     /**
      * 生成带有 sign 的 XML 格式字符串
      *
@@ -53,18 +40,6 @@ public class WXPayUtil {
         return ConverterUtil.mapToXml(data);
     }
 
-
-    /**
-     * 判断签名是否正确，必须包含sign字段，否则返回false。使用MD5签名。
-     *
-     * @param data Map类型数据
-     * @param key API密钥
-     * @return 签名是否正确
-     * @throws Exception
-     */
-    public static boolean isSignatureValid(Map<String, String> data, String key) throws Exception {
-        return isSignatureValid(data, key, EncryptionTypeConstants.MD5);
-    }
 
     /**
      * 判断签名是否正确，必须包含sign字段，否则返回false。
@@ -101,14 +76,15 @@ public class WXPayUtil {
             if (k.equals(WXPayConstants.FIELD_SIGN)) {
                 continue;
             }
-            if (data.get(k).trim().length() > 0) // 参数值为空，则不参与签名
+            if (data.get(k).trim().length() > 0){
                 sb.append(k).append("=").append(data.get(k).trim()).append("&");
+            }
         }
         sb.append("key=").append(key);
-        if (SignType.MD5.equals(signType)) {
+        if (EncryptionTypeConstants.MD5.equals(signType)) {
             return generateMD5Str(sb.toString()).toUpperCase();
         }
-        else if (SignType.HMACSHA256.equals(signType)) {
+        else if (EncryptionTypeConstants.HMACSHA256.equals(signType)) {
             return generateHMACSHA256Str(sb.toString(), key);
         }
         else {
@@ -191,7 +167,7 @@ public class WXPayUtil {
      * @return
      */
     public static Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger("wxpay java domain");
+        Logger logger = LoggerFactory.getLogger(WXPayUtil.class);
         return logger;
     }
 

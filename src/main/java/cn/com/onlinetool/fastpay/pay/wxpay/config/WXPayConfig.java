@@ -1,7 +1,10 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.config;
 
+import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
+import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomain;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomainSimpleImpl;
+import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayTypeConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +32,17 @@ public class WXPayConfig {
     private String mchId;
 
     /**
+     * 支付方式
+     * /**
+     * JSAPI--JSAPI支付（或小程序支付）、
+     * NATIVE--Native支付、
+     * APP--app支付，
+     * MWEB--H5支付，
+     * 不同trade_type决定了调起支付的方式，请根据支付产品正确上传
+     */
+    private String tradeType;
+
+    /**
      * API 密钥
      */
     private String key;
@@ -36,18 +50,12 @@ public class WXPayConfig {
     /**
      * 加密方式 默认 MD5
      */
-    private String signType;
-
-    /**
-     * 支付回调url
-     */
-    private String notifyUrl;
+    private String signType = EncryptionTypeConstants.MD5;
 
     /**
      * 商户证书
      */
     private InputStream cert;
-
 
 
     /**

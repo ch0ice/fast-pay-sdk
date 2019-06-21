@@ -18,6 +18,11 @@ import lombok.NoArgsConstructor;
 @Validation
 public class WXPayBaseRequest {
     /**
+     * 用户id 非必填
+     * 用户在商户appid下的唯一标识，trade_type=JSAPI，此参数必传
+     */
+    private String openid;
+    /**
      * 小程序ID 必填
      * 微信分配的小程序ID
      */

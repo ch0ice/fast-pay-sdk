@@ -31,6 +31,7 @@ public final class OkHttpRequestUtil {
         MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
                 .url(url);
+        request.addHeader("Content-Type", "text/xml");
         if(null != requestBody){
             request.post(RequestBody.create(mediaType, requestBody));
         }
@@ -99,9 +100,13 @@ public final class OkHttpRequestUtil {
     private static Response syncRequest(String url,String requestBody,String contentType,String userAgent,int retryNum, InputStream cert, String keyType, String partnerId) throws Exception {
         MediaType mediaType = MediaType.parse(contentType);
         Request.Builder request = new Request.Builder()
-                .url(url);
+                .url("https://" + url);
+        request.addHeader("Content-Type", "text/xml");
         if(null != requestBody){
             request.post(RequestBody.create(mediaType, requestBody));
+        }
+        if(null != userAgent){
+            request.addHeader("User-Agent",userAgent);
         }
         //根据条件获取不同的请求客户端 默认获取普通客户端
         OkHttpClient okHttpClient = OkHttpClientUtil.getOkHttpClient();

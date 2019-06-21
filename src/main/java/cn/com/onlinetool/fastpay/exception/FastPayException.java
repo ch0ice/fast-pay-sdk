@@ -1,6 +1,7 @@
 package cn.com.onlinetool.fastpay.exception;
 
-import cn.com.onlinetool.fastpay.pay.wxpay.enums.FastPayExceptionEnum;
+
+import cn.com.onlinetool.fastpay.pay.wxpay.enums.WXPayExceptionEnum;
 
 /**
  * @author choice
@@ -10,8 +11,8 @@ import cn.com.onlinetool.fastpay.pay.wxpay.enums.FastPayExceptionEnum;
  */
 public class FastPayException extends Exception {
 
-    public FastPayException(FastPayExceptionEnum exceptionEnum) {
-        super(exceptionEnum.getMsg());
+    public FastPayException(WXPayExceptionEnum wxPayExceptionEnum) {
+        super(wxPayExceptionEnum.getMsg());
     }
 
     public FastPayException(String errMsg) {

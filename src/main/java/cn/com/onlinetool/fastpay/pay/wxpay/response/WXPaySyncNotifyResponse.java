@@ -6,5 +6,5 @@ package cn.com.onlinetool.fastpay.pay.wxpay.response;
  * @date 2019-06-12 17:26
  *
  */
-public class WXPaySyncNotifyResponse {
+public class WXPaySyncNotifyResponse extends WXPayBaseResponse{
 }

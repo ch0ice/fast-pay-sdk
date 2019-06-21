@@ -22,6 +22,7 @@ public class AppTest
     public static void main(String[] args) throws Exception {
         WXPay wxPay = WXPay.newInstance(new WXPayConfig());
         WXPayShortUrlRequest request = new WXPayShortUrlRequest();
+        request.setLongUrl("test");
         wxPay.sayHelloWorld(request);
 
         WXPay wxPay1 = new WXPayImpl(new WXPayConfig());
