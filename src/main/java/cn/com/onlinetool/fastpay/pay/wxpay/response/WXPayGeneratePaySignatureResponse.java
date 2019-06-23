@@ -17,7 +17,7 @@ public class WXPayGeneratePaySignatureResponse {
     private String appId;
     private String timeStamp;
     private String nonceStr;
-    private String prepayId;
+    private String pack;
     private String signType;
     private String sign;
 }

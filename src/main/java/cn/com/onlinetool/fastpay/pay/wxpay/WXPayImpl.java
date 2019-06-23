@@ -108,8 +108,9 @@ public class WXPayImpl implements WXPay {
         finalpackage.put("timeStamp", WXPayUtil.getCurrentTimestamp() + "");
         finalpackage.put("nonceStr",request.getNonceStr());
         finalpackage.put("package", "prepay_id="+request.getPrepayId());
-        finalpackage.put("signType",config.getSignType().toString());
+        finalpackage.put("signType",config.getSignType());
         finalpackage.put("sign", WXPayUtil.generateSignature(finalpackage, config.getKey(),config.getSignType()));
+        finalpackage.put("pack",finalpackage.get("package"));
         return ConverterUtil.mapToObject(finalpackage, WXPayGeneratePaySignatureResponse.class);
     }
 
