@@ -23,9 +23,9 @@ public class WXPayTest {
     private static WXPay wxPay;
     static {
 
-        String yourAppid = "wx6dfc44874f7d95b1";
-        String yourMchId = "1536951601";
-        String yourKey = "2B6zpx8tYtOfwUcv8SUJVLP6zBSNeld2";
+        String yourAppid = "";
+        String yourMchId = "";
+        String yourKey = "";
 
         WXPayConfig wxPayConfig = new WXPayConfig();
         wxPayConfig.setAppid(yourAppid);
