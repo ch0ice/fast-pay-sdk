@@ -1,9 +1,9 @@
 package cn.com.onlinetool.fastpay.util;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okio.BufferedSink;
 import org.junit.Test;
-import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -14,8 +14,8 @@ import java.io.IOException;
  * @date 2019-06-19 11:09
  *
  */
+@Slf4j
 public class OkHttp3ClientUtilTest {
-    private static final Logger logger = LoggerUtil.getLogger(OkHttpRequestUtil.class);
     private static final OkHttpClient okHttpClient = new OkHttpClient();
     /**
      * 测试 okHttp3 异步请求 GET
@@ -32,13 +32,13 @@ public class OkHttp3ClientUtilTest {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                logger.error("onFailure:" + e.getMessage());
+                log.error("onFailure:" + e.getMessage());
                 e.printStackTrace();
             }
 
             @Override
             public void onResponse(Call call, Response res) throws IOException {
-                logger.info("onResponse: " + res.body().string());
+                log.info("onResponse: " + res.body().string());
             }
         });
     }
