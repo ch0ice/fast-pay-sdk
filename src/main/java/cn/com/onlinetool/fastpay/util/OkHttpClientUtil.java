@@ -4,7 +4,6 @@ import cn.com.onlinetool.fastpay.interceptor.okhttp.OkHttpRetryInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.http.ssl.SSLContexts;
-import org.slf4j.Logger;
 
 import javax.net.ssl.*;
 import java.io.InputStream;
@@ -18,8 +17,6 @@ import java.util.HashMap;
  * @date 2019-06-19 19:54
  */
 public final class OkHttpClientUtil {
-    private static final Logger LOGGER = LoggerUtil.getLogger(OkHttpClientUtil.class);
-
     /**
      * 用于保存不同类型参数创建的客户端，避免重复创建浪费资源
      */

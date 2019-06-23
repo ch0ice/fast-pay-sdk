@@ -3,6 +3,7 @@ package cn.com.onlinetool.fastpay.util;
 
 import cn.com.onlinetool.fastpay.pay.wxpay.util.WXPayUtil;
 import com.google.common.base.CaseFormat;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -24,6 +25,7 @@ import java.util.*;
  * @description: 转换工具类
  * @date 2019-06-06 15:32
  */
+@Slf4j
 public final class ConverterUtil {
 
 
@@ -246,7 +248,7 @@ public final class ConverterUtil {
             }
             return data;
         } catch (Exception ex) {
-            WXPayUtil.getLogger().warn("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), strXML);
+            log.info("Invalid XML, can not convert to map. Error message: {}. XML content: {}", ex.getMessage(), strXML);
             throw ex;
         }
 

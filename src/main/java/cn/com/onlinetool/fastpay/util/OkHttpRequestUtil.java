@@ -1,7 +1,6 @@
 package cn.com.onlinetool.fastpay.util;
 
 import okhttp3.*;
-import org.slf4j.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -12,8 +11,6 @@ import java.io.InputStream;
  *
  */
 public final class OkHttpRequestUtil {
-    private static final Logger LOGGER = LoggerUtil.getLogger(OkHttpRequestUtil.class);
-
 
     /**
      * 异步请求

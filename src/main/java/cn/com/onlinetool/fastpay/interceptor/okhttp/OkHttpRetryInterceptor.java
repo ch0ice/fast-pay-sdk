@@ -1,10 +1,9 @@
 package cn.com.onlinetool.fastpay.interceptor.okhttp;
 
-import cn.com.onlinetool.fastpay.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 
@@ -14,9 +13,8 @@ import java.io.IOException;
  * @date 2019-06-19 16:02
  *
  */
+@Slf4j
 public class OkHttpRetryInterceptor implements Interceptor {
-    private static final Logger LOGGER = LoggerUtil.getLogger(OkHttpRetryInterceptor.class);
-
     private int maxRetryNum = 0;
     private int retryNum = 0;
     public OkHttpRetryInterceptor(){
@@ -30,11 +28,11 @@ public class OkHttpRetryInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        LOGGER.info("retryNum = {}",retryNum);
+        log.info("retryNum = {}",retryNum);
         Response response = chain.proceed(request);
         while (!response.isSuccessful() && retryNum < maxRetryNum) {
             retryNum++;
-            LOGGER.info("retryNum = {}",retryNum);
+            log.info("retryNum = {}",retryNum);
             response = chain.proceed(request);
         }
         return response;

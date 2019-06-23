@@ -2,8 +2,6 @@ package cn.com.onlinetool.fastpay.pay.wxpay.util;
 import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import javax.crypto.Mac;
@@ -161,15 +159,6 @@ public class WXPayUtil {
         return newDocumentBuilder().newDocument();
     }
 
-
-    /**
-     * 日志
-     * @return
-     */
-    public static Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger(WXPayUtil.class);
-        return logger;
-    }
 
     /**
      * 获取当前时间戳，单位秒

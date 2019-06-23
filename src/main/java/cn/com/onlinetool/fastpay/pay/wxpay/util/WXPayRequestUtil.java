@@ -7,6 +7,7 @@ import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomain;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayReport;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import cn.com.onlinetool.fastpay.util.OkHttpRequestUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -37,6 +38,7 @@ import java.util.Map;
 
 import static cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants.USER_AGENT;
 
+@Slf4j
 public class WXPayRequestUtil {
     private WXPayConfig config;
 
@@ -166,7 +168,7 @@ public class WXPayRequestUtil {
             exception = ex;
             firstHasDnsErr = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("UnknownHostException for domainInfo {}", domainInfo);
+            log.warn("UnknownHostException for domainInfo {}", domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,
@@ -182,7 +184,7 @@ public class WXPayRequestUtil {
             exception = ex;
             firstHasReadTimeout = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("timeout happened for domainInfo {}", domainInfo);
+            log.warn("timeout happened for domainInfo {}", domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,
