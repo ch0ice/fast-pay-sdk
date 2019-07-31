@@ -26,8 +26,8 @@ public class WXPayImpl implements WXPay {
     private final WXPayRequestUtil wxPayRequestUtil;
 
     public WXPayImpl(final WXPayConfig config) throws Exception {
-//        this.checkWXPayConfig();
         this.config = config;
+        this.checkWXPayConfig();
         this.wxPayRequestUtil = new WXPayRequestUtil(config);
     }
 
@@ -44,9 +44,6 @@ public class WXPayImpl implements WXPay {
         }
         if (this.config.getMchId() == null || this.config.getMchId().trim().length() == 0) {
             throw new Exception("appid in config is empty");
-        }
-        if (this.config.getCert() == null) {
-            throw new Exception("cert stream in config is empty");
         }
         if (this.config.getWxPayDomain() == null){
             throw new Exception("config.getWXPayDomain() is null");

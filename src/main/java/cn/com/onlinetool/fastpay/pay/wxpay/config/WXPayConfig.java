@@ -1,10 +1,8 @@
 package cn.com.onlinetool.fastpay.pay.wxpay.config;
 
 import cn.com.onlinetool.fastpay.constants.EncryptionTypeConstants;
-import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomain;
 import cn.com.onlinetool.fastpay.pay.wxpay.domain.WXPayDomainSimpleImpl;
-import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayTypeConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,8 +30,7 @@ public class WXPayConfig {
     private String mchId;
 
     /**
-     * 支付方式
-     * /**
+     * 支付方式 必填
      * JSAPI--JSAPI支付（或小程序支付）、
      * NATIVE--Native支付、
      * APP--app支付，

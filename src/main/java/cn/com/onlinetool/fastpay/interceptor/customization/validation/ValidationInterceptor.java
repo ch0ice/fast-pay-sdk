@@ -46,8 +46,7 @@ public class ValidationInterceptor implements Interceptor {
 
     @Override
     public void before(Object proxy, Object target, Method method, Object[] args) throws Exception {
-        for(int i = 0; i < args.length; i++){
-            Object arg = args[i];
+        for(Object arg : args){
             this.validation(arg);
 
         }
