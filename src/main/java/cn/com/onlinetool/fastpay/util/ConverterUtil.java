@@ -284,9 +284,8 @@ public final class ConverterUtil {
             if (value == null) {
                 value = "";
             }
-            value = value.trim();
             if(null != from && null != to){
-                value = from.to(to,value);
+                key = from.to(to,key);
             }
             org.w3c.dom.Element filed = document.createElement(key);
             filed.appendChild(document.createTextNode(value));

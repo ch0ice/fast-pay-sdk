@@ -8,7 +8,9 @@ import cn.com.onlinetool.fastpay.pay.wxpay.response.WXPaySyncNotifyResponse;
 import cn.com.onlinetool.fastpay.pay.wxpay.response.WXPayUnifiedOrderResponse;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.CaseFormat;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,9 +25,9 @@ public class WXPayTest {
     private static WXPay wxPay;
     static {
 
-        String yourAppid = "";
-        String yourMchId = "";
-        String yourKey = "";
+        String yourAppid = "wx6dfc44874f7d95b1";
+        String yourMchId = "1536951601";
+        String yourKey = "2B6zpx8tYtOfwUcv8SUJVLP6zBSNeld2";
 
         WXPayConfig wxPayConfig = new WXPayConfig();
         wxPayConfig.setAppid(yourAppid);
@@ -60,9 +62,9 @@ public class WXPayTest {
         test.put("return_code","200");
         test.put("return_msg","成功");
         String testXml = ConverterUtil.mapToXml(test);
-        System.out.println(testXml);
         WXPaySyncNotifyResponse response = wxPay.syncNotify(testXml);
-        System.out.println(JSONObject.toJSONString(response));
+        Assertions.assertEquals("200",response.getReturnCode());
+        Assertions.assertEquals("成功",response.getReturnMsg());
     }
 
 
