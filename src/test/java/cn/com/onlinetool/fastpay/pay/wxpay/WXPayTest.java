@@ -8,7 +8,6 @@ import cn.com.onlinetool.fastpay.pay.wxpay.response.WXPaySyncNotifyResponse;
 import cn.com.onlinetool.fastpay.pay.wxpay.response.WXPayUnifiedOrderResponse;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.base.CaseFormat;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -25,9 +24,9 @@ public class WXPayTest {
     private static WXPay wxPay;
     static {
 
-        String yourAppid = "wx6dfc44874f7d95b1";
-        String yourMchId = "1536951601";
-        String yourKey = "2B6zpx8tYtOfwUcv8SUJVLP6zBSNeld2";
+        String yourAppid = "";
+        String yourMchId = "";
+        String yourKey = "";
 
         WXPayConfig wxPayConfig = new WXPayConfig();
         wxPayConfig.setAppid(yourAppid);
