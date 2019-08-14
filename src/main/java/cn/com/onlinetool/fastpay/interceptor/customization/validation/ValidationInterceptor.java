@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author choice
- * 校验拦截器
+ * 参数校验拦截器
  * @date 2019-06-17 16:28
  *
  */
@@ -45,15 +45,14 @@ public class ValidationInterceptor implements Interceptor {
     }
 
     @Override
-    public void before(Object proxy, Object target, Method method, Object[] args) throws Exception {
+    public void before(Object target, Object proxy, Method method, Object[] args) throws Exception {
         for(Object arg : args){
             this.validation(arg);
-
         }
     }
 
     @Override
-    public void after(Object proxy, Object target, Method method, Object[] args) {
+    public void after(Object target, Object proxy, Method method, Object[] args) {
 
     }
 }

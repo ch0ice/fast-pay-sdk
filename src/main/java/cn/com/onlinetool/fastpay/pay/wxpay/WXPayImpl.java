@@ -11,7 +11,6 @@ import cn.com.onlinetool.fastpay.pay.wxpay.util.WXPayRequestUtil;
 import cn.com.onlinetool.fastpay.pay.wxpay.util.WXPayUtil;
 import cn.com.onlinetool.fastpay.util.ConverterUtil;
 import com.google.common.base.CaseFormat;
-import org.apache.commons.beanutils.BeanUtils;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,7 +89,6 @@ public class WXPayImpl implements WXPay {
         if(null == request.getOpenid() && WXPayTypeConstants.JSAPI.equals(request.getTradeType())){
             throw new FastPayException(WXPayExceptionEnum.OPENID_NOT_EMPTY_FOR_JSAPI);
         }
-        BeanUtils.copyProperties(request,config);
         request.setNonceStr(WXPayUtil.generateNonceStr());
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         requestMap.put("sign",WXPayUtil.generateSignature(requestMap,config.getKey(),config.getSignType()));
@@ -113,7 +111,7 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayOrderQueryResponse orderQuery(WXPayOrderQueryRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
+        
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayOrderQueryResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -121,7 +119,6 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayCloseOrderResponse closeOrder(WXPayCloseOrderRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayCloseOrderResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -129,7 +126,6 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayRefundResponse refund(WXPayRefundRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayRefundResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -138,7 +134,6 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayRefundQueryResponse refundQuery(WXPayRefundQueryRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayRefundQueryResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -147,14 +142,13 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayDownloadBillResponse downloadBill(WXPayDownloadBillRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayDownloadBillResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
     }
 
+    @Override
     public WXPayShortUrlResponse shortUrl(WXPayShortUrlRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap)).trim();
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayShortUrlResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -162,7 +156,6 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayReportResponse report(WXPayReportRequest request) throws Exception {
-        BeanUtils.copyProperties(request,config);
         Map<String,String> requestMap = ConverterUtil.objectToMap(request, CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
         String responseXml = wxPayRequestUtil.requestWithoutCert(wxPayRequestUtil.fillRequestData(requestMap));
         return ConverterUtil.mapToObject(this.responseSignatureValid(responseXml),WXPayReportResponse.class,CaseFormat.LOWER_CAMEL,CaseFormat.LOWER_UNDERSCORE);
@@ -176,8 +169,8 @@ public class WXPayImpl implements WXPay {
     }
 
     @Override
-    public void sayHelloWorld(WXPayShortUrlRequest request){
-        System.out.println("Hello World!");
+    public WXPayConfig config() {
+        return config;
     }
 
 

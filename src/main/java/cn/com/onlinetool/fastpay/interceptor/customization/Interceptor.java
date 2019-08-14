@@ -11,20 +11,20 @@ import java.lang.reflect.Method;
 public interface Interceptor {
     /**
      * invoke 之前调用
-     * @param proxy
      * @param target
+     * @param proxy
      * @param method
      * @param args
      */
-    void before(Object proxy, Object target, Method method, Object[] args) throws Exception;
+    void before(Object target, Object proxy, Method method, Object[] args) throws Exception;
 
     /**
      * invoke 之后调用
-     * @param proxy
      * @param target
+     * @param proxy
      * @param method
      * @param args
      */
-    void after(Object proxy, Object target, Method method, Object[] args);
+    void after(Object target, Object proxy, Method method, Object[] args);
 
 }

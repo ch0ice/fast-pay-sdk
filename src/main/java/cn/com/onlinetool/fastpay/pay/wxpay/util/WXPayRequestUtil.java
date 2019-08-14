@@ -26,14 +26,10 @@ import org.apache.http.util.EntityUtils;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayConstants.USER_AGENT;

@@ -1,5 +1,6 @@
 package cn.com.onlinetool.fastpay.interceptor.customization;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -19,15 +20,27 @@ public class InterceptorHandler implements InvocationHandler {
      */
     private Class<? extends Interceptor> interceptorClass;
 
-    public InterceptorHandler() {
-        super();
-    }
 
     public InterceptorHandler(Object target, Class<? extends Interceptor> interceptorClass) {
         super();
         this.target = target;
         this.interceptorClass = interceptorClass;
     }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        if (interceptorClass == null) {
+            return method.invoke(target, args);
+        }
+
+        Interceptor interceptor = interceptorClass.newInstance();
+        interceptor.before(target, proxy, method, args);
+        Object result = method.invoke(target, args);
+        interceptor.after(target, proxy, method, args);
+
+        return result;
+    }
+
 
     /**
      * 绑定拦截器
@@ -45,17 +58,18 @@ public class InterceptorHandler implements InvocationHandler {
                 );
     }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if (interceptorClass == null) {
-            return method.invoke(target, args);
-        }
-
-        Interceptor interceptor = interceptorClass.newInstance();
-        interceptor.before(proxy, target, method, args);
-        Object result = method.invoke(target, args);
-        interceptor.after(proxy, target, method, args);
-
-        return result;
+    /**
+     * 获取原始对象
+     * @param proxy
+     * @return
+     * @throws Exception
+     */
+    public static Object getTarget(Object proxy) throws Exception {
+        Field field = proxy.getClass().getSuperclass().getDeclaredField("h");
+        field.setAccessible(true);
+        InterceptorHandler handler = (InterceptorHandler) field.get(proxy);
+        Field target = handler.getClass().getDeclaredField("target");
+        target.setAccessible(true);
+        return target.get(handler);
     }
 }

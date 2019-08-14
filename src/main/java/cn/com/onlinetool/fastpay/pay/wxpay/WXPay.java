@@ -1,8 +1,12 @@
 package cn.com.onlinetool.fastpay.pay.wxpay;
 
+import cn.com.onlinetool.fastpay.annotations.validation.MethodType;
 import cn.com.onlinetool.fastpay.interceptor.customization.InterceptorHandler;
 import cn.com.onlinetool.fastpay.interceptor.customization.validation.ValidationInterceptor;
+import cn.com.onlinetool.fastpay.interceptor.customization.validation.WxPayCopyPropertiesInterceptor;
+import cn.com.onlinetool.fastpay.interceptor.customization.validation.WxPayMethodTypeInterceptor;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
+import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayTypeConstants;
 import cn.com.onlinetool.fastpay.pay.wxpay.request.*;
 import cn.com.onlinetool.fastpay.pay.wxpay.response.*;
 
@@ -20,6 +24,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JSAPI})
     public WXPayUnifiedOrderResponse unifiedOrder(WXPayUnifiedOrderRequest request) throws Exception ;
 
 
@@ -111,14 +116,15 @@ public interface WXPay {
     public WXPaySyncNotifyResponse syncNotify(String reqXml) throws Exception ;
 
     /**
-     * test
-     * @param request
+     * 获取微信支付配置
      */
-    public void sayHelloWorld(WXPayShortUrlRequest request);
+    public WXPayConfig config();
 
 
     public static WXPay newInstance(final WXPayConfig config) throws Exception {
         WXPay wxPay = new WXPayImpl(config);
+        wxPay = InterceptorHandler.bind(wxPay, WxPayMethodTypeInterceptor.class);
+        wxPay = InterceptorHandler.bind(wxPay, WxPayCopyPropertiesInterceptor.class);
         wxPay = InterceptorHandler.bind(wxPay, ValidationInterceptor.class);
         return wxPay;
     }
