@@ -13,9 +13,13 @@ package cn.com.onlinetool.fastpay.pay.wxpay.constants;
 public final class WXPayTypeConstants {
 
     /**
-     * JSAPI支付/小程序支付
+     * JSAPI支付
      */
-    public static final String JSAPI = "JSAPI";
+    public static final String JS_API = "JSAPI";
+    /**
+     * 小程序支付
+     */
+    public static final String MINI_APP = "JSAPI";
     /**
      * NATIVE支付/扫码支付
      */

@@ -37,7 +37,7 @@ public class WXPayTest {
         wxPayConfig.setMchId(yourMchId);
         wxPayConfig.setKey(yourKey);
         wxPayConfig.setSignType(EncryptionTypeConstants.HMACSHA256);
-        wxPayConfig.setTradeType(WXPayTypeConstants.JSAPI);
+        wxPayConfig.setTradeType(WXPayTypeConstants.JS_API);
         try {
             wxPay = WXPay.newInstance(wxPayConfig);
         } catch (Exception e) {

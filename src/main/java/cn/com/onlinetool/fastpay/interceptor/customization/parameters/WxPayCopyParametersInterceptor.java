@@ -1,9 +1,6 @@
-package cn.com.onlinetool.fastpay.interceptor.customization.validation;
+package cn.com.onlinetool.fastpay.interceptor.customization.parameters;
 
-import cn.com.onlinetool.fastpay.annotations.validation.MethodType;
-import cn.com.onlinetool.fastpay.annotations.validation.ValidationException;
 import cn.com.onlinetool.fastpay.interceptor.customization.Interceptor;
-import cn.com.onlinetool.fastpay.interceptor.customization.InterceptorHandler;
 import cn.com.onlinetool.fastpay.pay.wxpay.WXPay;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import org.apache.commons.beanutils.BeanUtils;
@@ -16,7 +13,7 @@ import java.lang.reflect.Method;
  * @date 2019-08-14 22:05
  *
  */
-public class WxPayCopyPropertiesInterceptor implements Interceptor {
+public class WxPayCopyParametersInterceptor implements Interceptor {
 
     @Override
     public void before(Object target, Object proxy, Method method, Object[] args) throws Exception {

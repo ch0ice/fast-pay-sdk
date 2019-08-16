@@ -2,8 +2,8 @@ package cn.com.onlinetool.fastpay.pay.wxpay;
 
 import cn.com.onlinetool.fastpay.annotations.validation.MethodType;
 import cn.com.onlinetool.fastpay.interceptor.customization.InterceptorHandler;
+import cn.com.onlinetool.fastpay.interceptor.customization.parameters.WxPayCopyParametersInterceptor;
 import cn.com.onlinetool.fastpay.interceptor.customization.validation.ValidationInterceptor;
-import cn.com.onlinetool.fastpay.interceptor.customization.validation.WxPayCopyPropertiesInterceptor;
 import cn.com.onlinetool.fastpay.interceptor.customization.validation.WxPayMethodTypeInterceptor;
 import cn.com.onlinetool.fastpay.pay.wxpay.config.WXPayConfig;
 import cn.com.onlinetool.fastpay.pay.wxpay.constants.WXPayTypeConstants;
@@ -24,7 +24,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
-    @MethodType({WXPayTypeConstants.JSAPI})
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayUnifiedOrderResponse unifiedOrder(WXPayUnifiedOrderRequest request) throws Exception ;
 
 
@@ -42,6 +42,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayOrderQueryResponse orderQuery(WXPayOrderQueryRequest request) throws Exception ;
 
 
@@ -53,6 +54,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayCloseOrderResponse closeOrder(WXPayCloseOrderRequest request) throws Exception ;
 
 
@@ -64,6 +66,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayRefundResponse refund(WXPayRefundRequest request) throws Exception ;
 
     /**
@@ -73,6 +76,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayRefundQueryResponse refundQuery(WXPayRefundQueryRequest request) throws Exception ;
 
 
@@ -84,6 +88,7 @@ public interface WXPay {
      * @return 经过封装的API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayDownloadBillResponse downloadBill(WXPayDownloadBillRequest request) throws Exception ;
 
 
@@ -95,6 +100,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.NATIVE})
     public WXPayShortUrlResponse shortUrl(WXPayShortUrlRequest request) throws Exception ;
 
 
@@ -105,6 +111,7 @@ public interface WXPay {
      * @return API返回数据
      * @throws Exception
      */
+    @MethodType({WXPayTypeConstants.JS_API,WXPayTypeConstants.MINI_APP,WXPayTypeConstants.NATIVE,WXPayTypeConstants.APP,WXPayTypeConstants.H5})
     public WXPayReportResponse report(WXPayReportRequest request) throws Exception ;
 
     /**
@@ -124,7 +131,7 @@ public interface WXPay {
     public static WXPay newInstance(final WXPayConfig config) throws Exception {
         WXPay wxPay = new WXPayImpl(config);
         wxPay = InterceptorHandler.bind(wxPay, WxPayMethodTypeInterceptor.class);
-        wxPay = InterceptorHandler.bind(wxPay, WxPayCopyPropertiesInterceptor.class);
+        wxPay = InterceptorHandler.bind(wxPay, WxPayCopyParametersInterceptor.class);
         wxPay = InterceptorHandler.bind(wxPay, ValidationInterceptor.class);
         return wxPay;
     }

@@ -86,7 +86,7 @@ public class WXPayImpl implements WXPay {
 
     @Override
     public WXPayUnifiedOrderResponse unifiedOrder(WXPayUnifiedOrderRequest request) throws Exception {
-        if(null == request.getOpenid() && WXPayTypeConstants.JSAPI.equals(request.getTradeType())){
+        if(null == request.getOpenid() && WXPayTypeConstants.JS_API.equals(request.getTradeType())){
             throw new FastPayException(WXPayExceptionEnum.OPENID_NOT_EMPTY_FOR_JSAPI);
         }
         request.setNonceStr(WXPayUtil.generateNonceStr());
