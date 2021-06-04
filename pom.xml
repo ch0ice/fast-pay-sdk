@@ -44,7 +44,7 @@
         <junit>4.12</junit>
         <junit-jupiter-api>5.5.0</junit-jupiter-api>
         <projectlombok.lombok>1.18.8</projectlombok.lombok>
-        <httpcomponents.httpclient>4.5.9</httpcomponents.httpclient>
+        <httpcomponents.httpclient>4.5.13</httpcomponents.httpclient>
         <slf4j>1.7.26</slf4j>
         <google.guava>23.0</google.guava>
         <commons-beanutils>1.9.3</commons-beanutils>
