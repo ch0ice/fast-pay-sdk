@@ -48,7 +48,7 @@
         <slf4j>1.7.26</slf4j>
         <google.guava>23.0</google.guava>
         <commons-beanutils>1.9.3</commons-beanutils>
-        <alibaba.fastjson>1.2.58</alibaba.fastjson>
+        <alibaba.fastjson>1.2.83</alibaba.fastjson>
         <maven-javadoc-plugin>3.1.0</maven-javadoc-plugin>
         <maven-source-plugin>3.1.0</maven-source-plugin>
         <maven-compiler-plugin>3.6.1</maven-compiler-plugin>
